@@ -1,0 +1,38 @@
+name: Test with pytest
+on: push
+jobs: 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # so the workflow runs on a machine that does not have our code
+      # so the first step is to download it
+      - name: Get code
+
+        # so we are using an action here 
+        # @v3 is the version so we do not use some updated version
+        # os by default it will download our code so we do not have to change the configuration
+        uses: actions/checkout@v7
+        # some actions require some configuratin so we can add that "with" keyword
+        # with:
+        #   ... 
+
+      
+      # now we have to download python, libraries to run the testcases
+      # so as are using ubuntu-latest we already have python
+      
+      # but we still download python ** JUST TO PRACTICE
+
+      - name: Install python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+
+      
+      # now we are downloading packages
+      - name: Downloading packages
+        run: pip install pytest
+
+      # run testcase
+      - name: Run testcases
+        run: pytest
+      
