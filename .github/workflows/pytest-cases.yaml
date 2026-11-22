@@ -35,4 +35,23 @@ jobs:
       # run testcase
       - name: Run testcases
         run: pytest
+
+  # just added one more job to practice same as previous one
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+
+        uses: actions/checkout@v7
+
+      - name: Install python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+
+      - name: Downloading packages
+        run: pip install pytest
+
+      - name: Run testcases
+        run: pytest
       
