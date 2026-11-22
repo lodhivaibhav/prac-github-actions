@@ -1,5 +1,10 @@
 name: Test with pytest
-on: push
+
+# on: push
+
+# by adding this we can add multiple events to trigger this workflow
+on: ["push", "workflow_dispatch"]
+
 jobs: 
   test:
     runs-on: ubuntu-latest
@@ -42,6 +47,8 @@ jobs:
     # this check tells that it should go after job test
     # otherwise it is going to run in parallel
     # we can also add that it should wait for multiple jobs
+
+    # now advantage if previous job fails it will not going to run new job
     needs: test
     runs-on: ubuntu-latest
     steps:
