@@ -3,6 +3,7 @@ name: Test with pytest
 # on: push
 
 # by adding this we can add multiple events to trigger this workflow
+# workflow_dispatch means now we can manually run workflow from github
 on: ["push", "workflow_dispatch"]
 
 jobs: 
@@ -66,4 +67,12 @@ jobs:
 
       - name: Run testcases
         run: pytest
+
+      - name: Output Github context
+
+        # This step prints all available GitHub context information in JSON format in the GitHub Actions execution logs.
+        # github is a predefined GitHub context object.
+        # ${{ }}: Evaluates GitHub Actions expressions
+        
+        run: echo "${{ toJSON(github) }}"
       
