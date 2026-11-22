@@ -38,6 +38,11 @@ jobs:
 
   # just added one more job to practice same as previous one
   deploy:
+
+    # this check tells that it should go after job test
+    # otherwise it is going to run in parallel
+    # we can also add that it should wait for multiple jobs
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Get code
