@@ -12,3 +12,8 @@ def test_sub():
 def test_mul():
     result  = 2*2
     assert result == 4
+
+
+def test_div():
+    result  = 4//2
+    assert result == 2
