@@ -15,12 +15,22 @@ on:
   pull_request:
 
     # when will be this workflow will be triggered
+    # this means when branch is opened
     types:
       - opened
 
   # we can add it like this without mentiong any value to it
   workflow_dispatch:
   
+  # this will mean it will trigger the workflow when 
+  # we push to these branches and we can also add this branch filter to pull_request section above
+  push:
+    branches:
+      - main
+      # this covers like dev-v1, dev-v2...
+      - 'dev-*'
+      # this covers like this also dev-v1/v2, dev-v1/v2/v3
+      - 'dev-**'
 
 jobs: 
   test:
