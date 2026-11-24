@@ -4,7 +4,23 @@ name: Test with pytest
 
 # by adding this we can add multiple events to trigger this workflow
 # workflow_dispatch means now we can manually run workflow from github
-on: ["push", "workflow_dispatch"]
+
+# on: ["push", "workflow_dispatch"]
+
+
+
+# Event activity types and filters
+on:
+  # workflow will be triggered on pull request
+  pull_request:
+
+    # when will be this workflow will be triggered
+    types:
+      - opened
+
+  # we can add it like this without mentiong any value to it
+  workflow_dispatch:
+  
 
 jobs: 
   test:
