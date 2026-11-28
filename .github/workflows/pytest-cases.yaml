@@ -68,6 +68,28 @@ jobs:
       - name: Run testcases
         run: pytest
 
+      - name: Create hello.txt
+        run: |
+          echo "Hello from GitHub Actions" > hello.txt
+          cat hello.txt
+
+      # so here below we working with artifact
+      - name: Upload artifacts
+        # so below we are uploading artifact
+        # so we have used action here: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
+
+        # adding some additional configuration
+        with:
+          name: manual-files
+
+          # the path here means where to find the file
+          # so here hello.txt is the file which is created by our JOB
+          # and test/test_math_module.py just present there
+          path: |
+            hello.txt
+            test/test_math_module.py
+
   # just added one more job to practice same as previous one
   deploy:
 
