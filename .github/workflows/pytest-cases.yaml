@@ -81,6 +81,7 @@ jobs:
 
         # adding some additional configuration
         with:
+          # name of the artifact that we are adding
           name: manual-files
 
           # the path here means where to find the file
@@ -101,6 +102,26 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
+
+      # here we are downloading the artifact that we have uploaded in previous step
+      - name: Downloading artifact
+        # using action to download 
+        uses: actions/download-artifact@v4
+
+        # adding some additional configuration 
+        with:
+
+          # name of the artifact that we want to download
+          name: manual-files
+      
+      # so downloading artifacts download it and unzip it in the same directory
+      # and we can see the files as this step runs on different machine
+      # we can list the files
+      
+      # and this will not print other files as we are downloading them below this step
+      - name: list files
+        run: ls
+
       - name: Get code
 
         uses: actions/checkout@v7
